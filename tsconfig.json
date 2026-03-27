@@ -32,7 +32,8 @@
     "features/products/components/ui.jsx",
     "features/products/components/ui.jsx",
     "app/example-uploader/page.jsx",
-    "features/products/models/product.models.js"
+    "features/products/models/product.models.js",
+    "features/users/users.server.test.ts"
   ],
   "exclude": ["node_modules"]
 }

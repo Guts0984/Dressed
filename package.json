@@ -11,26 +11,41 @@
     "db:products": "docker exec -i shop-db-1 psql -U user -d shop -f /app/features/products/product.table.sql",
     "db:orders": "docker exec -i shop-db-1 psql -U user -d shop -f /app/features/orders/order.table.sql",
     "db:cart": "docker exec -i shop-db-1 psql -U user -d shop -f /app/features/cart/cart.table.sql",
-    "db:init": "npm run db:users && npm run db:products && npm run db:orders && npm run db:cart"
+    "db:init": "npm run db:users && npm run db:products && npm run db:orders && npm run db:cart",
+    "db:users:test": "docker exec -i shop-db-1 psql -U user -d shop_test -f /app/features/users/user.table.sql",
+    "db:products:test": "docker exec -i shop-db-1 psql -U user -d shop_test -f /app/features/products/product.table.sql",
+    "db:orders:test": "docker exec -i shop-db-1 psql -U user -d shop_test -f /app/features/orders/order.table.sql",
+    "db:cart:test": "docker exec -i shop-db-1 psql -U user -d shop_test -f /app/features/cart/cart.table.sql",
+    "db:init:test": "npm run db:users:test && npm run db:products:test && npm run db:orders:test && npm run db:cart:test",
+    "test": "cross-env NODE_ENV=test jest",
+    "test:watch": "cross-env NODE_ENV=test jest --watch"
   },
   "dependencies": {
-    "@types/pg": "^8.20.0",
     "better-auth": "^1.4.19",
-    "mongoose": "^9.2.1",
+    "dotenv": "^17.3.1",
     "next": "16.1.6",
     "pg": "^8.20.0",
     "react": "19.2.3",
-    "react-dom": "19.2.3",
-    "ts-node": "^10.9.2"
+    "react-dom": "19.2.3"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4",
+    "@testing-library/dom": "^10.4.1",
+    "@testing-library/jest-dom": "^6.9.1",
+    "@testing-library/react": "^16.3.2",
+    "@types/jest": "^30.0.0",
     "@types/node": "^20.19.33",
+    "@types/pg": "^8.20.0",
     "@types/react": "^19",
     "@types/react-dom": "^19",
+    "cross-env": "^10.1.0",
     "eslint": "^9",
     "eslint-config-next": "16.1.6",
+    "jest": "^30.3.0",
+    "jest-environment-jsdom": "^30.3.0",
     "tailwindcss": "^4",
+    "ts-jest": "^29.4.6",
+    "ts-node": "^10.9.2",
     "typescript": "^5.9.3"
   }
 }
