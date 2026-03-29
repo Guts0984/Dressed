@@ -7,12 +7,10 @@ const createJestConfig = nextJest({
 
 const config: Config = {
   coverageProvider: "v8",
-  // We define "projects" instead of a single top-level environment
   projects: [
     {
       displayName: "backend",
       testEnvironment: "node",
-      // Look for files ending in .server.test.ts or inside a /server/ folder
       testMatch: ["**/*.server.test.ts", "**/server/**/*.test.ts"],
       setupFiles: ["<rootDir>/tests-setup/jest-load-env.ts"],
       setupFilesAfterEnv: ["<rootDir>/tests-setup/jest-setup.server.ts"],
@@ -26,7 +24,6 @@ const config: Config = {
     {
       displayName: "frontend",
       testEnvironment: "jsdom",
-      // Look for files ending in .client.test.tsx or inside a /components/ folder
       testMatch: ["**/*.client.test.tsx", "**/components/**/*.test.tsx"],
       setupFilesAfterEnv: ["<rootDir>/tests-setup/jest-setup.client.ts"],
       moduleNameMapper: {

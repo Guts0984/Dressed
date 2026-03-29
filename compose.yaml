@@ -1,13 +1,14 @@
 services:
   db:
     image: postgres:18
+    hostname: ${PGHOST}
     restart: always
     environment:
-      POSTGRES_DB: shop
-      POSTGRES_USER: user
-      POSTGRES_PASSWORD: password
+      - POSTGRES_DB=${PGDATABASE}
+      - POSTGRES_USER=${PGUSER}
+      - POSTGRES_PASSWORD=${PGPASSWORD}
     ports:
-      - "5432:5432"
+      - "5432:${PGPORT}"
     volumes:
       - pgdata:/var/lib/postgresql/MAJOR/docker
       - ./init-test-db.sql:/docker-entrypoint-initdb.d/init-test-db.sql

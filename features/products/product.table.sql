@@ -4,7 +4,7 @@
     description TEXT,
     price DECIMAL(10, 2) NOT NULL,
     stock INT DEFAULT 0 NOT NULL,
-    owner_id INT NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+    owner_id TEXT NOT NULL REFERENCES "user"(id) ON DELETE CASCADE,
     images TEXT[],
     is_active BOOLEAN DEFAULT TRUE,
     created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,

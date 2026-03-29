@@ -6,7 +6,7 @@ END $$;
 
 CREATE TABLE IF NOT EXISTS orders (
     id INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
-    user_id INT NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+    user_id TEXT NOT NULL REFERENCES "user"(id) ON DELETE CASCADE,
     total_price DECIMAL(12, 2) NOT NULL DEFAULT 0.00,
     status order_status DEFAULT 'pending',
     
