@@ -12,3 +12,6 @@ const pool = new Pool({
 export default pool;
 
 //docker exec -it shop-db-1 psql -U user -d shop
+//https://unsplash.com/s/photos/jacket?license=free
+//http://localhost:3000/api/auth/callback/google google redirect
+//cloudflare r2
