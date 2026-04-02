@@ -3,7 +3,15 @@ import { Pool } from "pg";
 const isTest = process.env.NODE_ENV === "test";
 
 const pool = new Pool({
-  database: isTest ? "shop_test" : "shop",
+  host: process.env.PGHOST,
+  port: Number(process.env.PGPORT),
+  user: process.env.PGUSER,
+  password: process.env.PGPASSWORD,
+  database: isTest ? "shop_test" : process.env.PGDATABASE,
+  ssl:
+    process.env.NODE_ENV === "production"
+      ? { rejectUnauthorized: false }
+      : false,
   idleTimeoutMillis: 30000,
   connectionTimeoutMillis: 2000,
   maxLifetimeSeconds: 60,
