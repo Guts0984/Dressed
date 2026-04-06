@@ -6,8 +6,6 @@ import { signOut, useSession } from "@/lib/auth-client";
 
 import Link from "next/link";
 
-export const runtime = "edge";
-
 export default function Home() {
   const { data: session, isPending: loading } = useSession();
 
