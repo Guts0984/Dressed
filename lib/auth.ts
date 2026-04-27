@@ -1,28 +1,31 @@
 import { betterAuth } from "better-auth";
 import pool from "@/lib/db";
 import { nextCookies } from "better-auth/next-js";
+import { sendPasswordResetEmail } from "@/features/emails/send-password-reset-email";
+import { sendVerificationEmail } from "@/features/emails/send-verification-email";
 
 export const auth = betterAuth({
   baseURL: process.env.BETTER_AUTH_URL,
   database: pool,
   emailAndPassword: {
     enabled: true,
-    //   requireEmailVerification: true,
-    //   sendResetPassword: async ({ user, url }) => {
-    //     await sendPasswordResetEmail({ user, url });
+    requireEmailVerification: true,
+    sendResetPassword: async ({ user, url }) => {
+      await sendPasswordResetEmail({ user, url });
+    },
   },
-  // },
-  // emailVerification: {
-  //   autoSignInAfterVerification: true,
-  //   sendOnSignUp: true,
-  //   sendVerificationEmail: async ({ user, url }) => {
-  //     await sendVerificationEmail({ user, url });
-  //   },
-  //},
+  emailVerification: {
+    autoSignInAfterVerification: true,
+    sendOnSignUp: true,
+    disableEmailVerification: false,
+    sendVerificationEmail: async ({ user, url }) => {
+      await sendVerificationEmail({ user, url });
+    },
+  },
   session: {
     cookieCache: {
       enabled: true,
-      maxAge: 60, //1 min
+      maxAge: 60 * 60 * 24 * 7,
     },
   },
   user: {

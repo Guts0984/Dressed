@@ -1,32 +1,21 @@
 import { Pool } from "pg";
 
+const isProduction = process.env.NODE_ENV === "production";
+
 const pool = new Pool({
   connectionString: process.env.DATABASE_URL,
-  ssl: { rejectUnauthorized: true },
+  ssl: isProduction ? { rejectUnauthorized: false } : false,
+  idleTimeoutMillis: 30000,
+  connectionTimeoutMillis: 2000,
+  maxLifetimeSeconds: 60,
 });
 
 export default pool;
 
-// const isTest = process.env.NODE_ENV === "test";
-
-// const pool = new Pool({
-//   host: process.env.PGHOST,
-//   port: Number(process.env.PGPORT),
-//   user: process.env.PGUSER,
-//   password: process.env.PGPASSWORD,
-//   database: isTest ? "shop_test" : process.env.PGDATABASE,
-//   ssl:
-//     process.env.NODE_ENV === "production"
-//       ? { rejectUnauthorized: false }
-//       : false,
-//   idleTimeoutMillis: 30000,
-//   connectionTimeoutMillis: 2000,
-//   maxLifetimeSeconds: 60,
-// });
-
-// export default pool;
-
-//docker exec -it shop-db-1 psql -U user -d shop
+//docker exec -it dressed-db psql -U user -d shop
 //https://unsplash.com/s/photos/jacket?license=free
 //http://localhost:3000/api/auth/callback/google google redirect
 //cloudflare r2
+//React Three Fiber
+//mediumrare1298@gmail.com
+//password
